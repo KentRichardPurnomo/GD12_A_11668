@@ -25,6 +25,7 @@ const FormRegister = () => {
     event.preventDefault();
     SignUp(data)
       .then((res) => {
+        sessionStorage.setItem("user", JSON.stringify({ name: data.name, email: data.email }));
         navigate("/");
         toast.success(res.message);
       })

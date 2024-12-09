@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contents extends Model
+class Komentar extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'contents';
+    protected $table = 'komentar';
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $fillable = [
         'id_user',
-        'title',
-        'thumbnail',
-        'description',
+        'id_content',
+        'comment',
+        'data_added',
     ];
 
     public function user()
@@ -28,7 +24,9 @@ class Contents extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function komentar(){
-        return $this->hasMany(Komentar::class, 'id_content');
+    public function content()
+    {
+        return $this->belongsTo(Contents::class, 'id_content');
     }
+    
 }

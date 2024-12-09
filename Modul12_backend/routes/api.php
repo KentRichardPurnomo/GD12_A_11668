@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,4 +28,13 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/contents/{id}',[App\Http\Controllers\Api\ContentController::class,'destroy']);
 
     Route::get('/contents/user/{id}',[App\Http\Controllers\Api\ContentController::class,'showContentbyUser']);
+
+    Route::get('/komentar',[App\Http\Controllers\Api\KomentarController::class,'index']);
+    Route::post('/komentar',[App\Http\Controllers\Api\KomentarController::class,'store']);
+    Route::get('/komentar/{id}',[App\Http\Controllers\Api\KomentarController::class,'show']);
+    Route::put('/komentar/{id}',[App\Http\Controllers\Api\KomentarController::class,'update']);
+    Route::delete('/komentar/{id}',[App\Http\Controllers\Api\KomentarController::class,'destroy']);
+
+    Route::get('/komentar/user/{id}',[App\Http\Controllers\Api\KomentarController::class,'showKomentarbyUser']);
+    Route::get('/komentar/content/{contentId}', [App\Http\Controllers\Api\KomentarController::class, 'showKomentarbyContent']);
 });
